@@ -56,12 +56,6 @@
  *                                      token:
  *                                          type: string
  *                                          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZGRmMzdkYWEzNWIzOGJkY2EzNTcwZiIsInVzZXJuYW1lIjoiRG9yY2FzMiIsImVtYWlsIjoiZG9yY2FzQDJnbWFpbC5jb20iLCJyb2xlIjoyLCJpYXQiOjE2OTIyNjg4NDUsImV4cCI6MTY5MjQ0MTY0NX0.iFUz_p4amVek47sOcOYcSBL95BhRdDfa3xGJgFt38
- *          404:
- *              description: Role not found
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: '#/components/schemas/NotFoundError'
  *          '409':
  *              description: Account already exist
  *              content:
