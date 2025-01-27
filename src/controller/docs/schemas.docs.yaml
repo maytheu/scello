@@ -1,0 +1,37 @@
+components:
+  schemas:
+    AuthenticatedError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 401
+        message: 
+          type: string
+          example: User not authenticated
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 404
+        message: 
+          type: string
+          example: Not Found
+    ValidationError:
+      type: object
+      properties:
+        status: 
+          type: number
+          example: 422
+        messgae: 
+          type: string
+    ServerError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal server error
