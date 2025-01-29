@@ -90,7 +90,7 @@ class ProductService {
 
         const products = await prisma.product.findMany({
           where: { deleted: false },
-            orderBy: { [orderBy]: orderDir },
+          orderBy: { [orderBy]: orderDir },
           take: productLimit,
           skip,
         });
@@ -100,10 +100,13 @@ class ProductService {
 
       if (search) {
         if (search.name) {
-          query.name = { contains: search.name, mode:'insensitive' };
+          query.name = { contains: search.name, mode: "insensitive" };
         }
         if (search.description) {
-          query.description = { contains: search.description, mode: "insensitive" };
+          query.description = {
+            contains: search.description,
+            mode: "insensitive",
+          };
         }
         if (search.category) {
           query.category = { contains: search.category, mode: "insensitive" };
@@ -116,13 +119,17 @@ class ProductService {
           this.regex,
           (match: string) => `-${this.operationMap[match]}-`
         );
-
-        filters.split(' ').join().split(",").forEach((item) => {
-          const [field, operator, value] = item.split("-");
-          if (filterOption.includes(field)) {
-            query[field] = { [operator]: +value };
-          }
-        });
+        //query.price={gt:10}
+        filters
+          .split(" ")
+          .join()
+          .split(",")
+          .forEach((item) => {
+            const [field, operator, value] = item.split("-");
+            if (filterOption.includes(field)) {
+              query[field] = { [operator]: +value };
+            }
+          });
       }
       if (sort) {
         const sortOption = ["price", "quantity", "name"];
@@ -130,27 +137,18 @@ class ProductService {
           this.sortRegex,
           (match: string) => `${this.operationMap[match]}-`
         );
-
-        sorts.split(' ').join().split(",").forEach((item) => {                    
-          const [value, field] = item.split("-");
-          if (sortOption.includes(field)) {
-            sortObj.push({ [field]: value });
-          }
-        });
-        console.log(sortObj);
-        
+        //[{price:'asc'}]
+        sorts
+          .split(" ")
+          .join()
+          .split(",")
+          .forEach((item) => {
+            const [value, field] = item.split("-");
+            if (sortOption.includes(field)) {
+              sortObj.push({ [field]: value });
+            }
+          });
       }
-      console.log(
-        "all product:\n",
-        "filter:",
-        sortObj,
-        "sort:",
-        sort,
-        "search:",
-        search,
-        "query:",
-        query
-      );
 
       const products = await prisma.product.findMany({
         where: query,

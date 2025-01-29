@@ -6,6 +6,9 @@ import jwt from "jsonwebtoken";
 import Helpers from "../service/Helpers";
 
 describe("AuthService", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   describe("signup()", () => {
     const sut = AuthService.signup;
     const data: ISignup = {

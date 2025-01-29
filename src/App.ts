@@ -24,6 +24,9 @@ class App {
   }
 
   private route() {
+    router.get("/", (req: Request, res: Response) =>
+      res.send("You're live <a href='/docs'>docs</a>")
+    );    
     this.app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     this.app.get("/docs.json", (req: Request, res: Response) => {
       res.setHeader("Content-Type", "application/json");

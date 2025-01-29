@@ -12,7 +12,7 @@ import { Role } from "../interface/utils.types";
 import { prisma } from "../server";
 
 interface IUserPayload {
-  id: string;
+  id: number;
   role: number;
 }
 
@@ -24,8 +24,9 @@ class Middleware {
    * @param next
    * @returns
    */
-  isAuthenticated: RequestHandler = async (req, res, next) => {
-    const authHeader = req.headers.authorization;
+  isAuthenticated: RequestHandler = async (req, res, next) => {console.log(req, 'herer');
+  
+    const authHeader = req.headers?.authorization;
     if (!authHeader)
       return next(new AppError("Please login to access this resource", 401));
     if (authHeader) {
