@@ -8,7 +8,4 @@ import { cleanEnv, num, str } from "envalid";
 export const env = cleanEnv(process.env, {
   PORT: num(),
   SECRET_KEY: str(),
-  CLOUDINARY_CLOUD: str(),
-  CLOUDINARY_SECRET: str(),
-  CLOUDINARY_KEY: str(),
 });

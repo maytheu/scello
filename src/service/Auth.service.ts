@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import  prisma  from "../../client";
+import prisma from "../../client";
 import AppError from "./AppError";
 import Helpers from "./Helpers";
 import { wrongCredentials } from "../controller/errorHandler";
@@ -10,8 +10,8 @@ import { ISignup } from "../interface/user.interface.";
 
 class AuthService {
   signup = async (data: ISignup) => {
-    try {      
-      const isUser = await this.checkUniqueEmail(data.email);      
+    try {
+      const isUser = await this.checkUniqueEmail(data.email);
       if (isUser) return new AppError("Account already exist", 409);
       const hashPasssword = await this.encryptPassword(data.password);
       data.password = hashPasssword;
@@ -36,6 +36,7 @@ class AuthService {
         password: true,
         email: true,
         roleId: true,
+        id: true,
       });
       if (!user) return wrongCredentials();
 
@@ -57,7 +58,6 @@ class AuthService {
     select: object = { email: true, id: true }
   ): Promise<any | null> => {
     return await prisma.user.findUnique({ where: { email }, select });
-    
   };
 
   private comparePassword = async (

@@ -45,7 +45,7 @@ class Middleware {
    * @param level - defines the role of the user
    * @returns
    */
-  authorize = (level: Role) => {
+  authorize = (level: Role[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
         const user = <IUserPayload>req.user;
@@ -54,7 +54,7 @@ class Middleware {
           select: { name: true },
         });
         if (!admin) return next(new AppError("You lost your way", 403));
-        if (admin.name !== level && admin.name !== "super-admin")
+        if(!level.includes(admin.name as any))
           return next(new AppError("Unauthorized", 403));
 
         return next();

@@ -84,5 +84,5 @@ export const wrongCredentials = () => {
 };
 
 export const notFound = (item: string) => {
-  return new AppError(`${item} cannot be found`, 404);
+  return new AppError(`${item} not found`, 404);
 };

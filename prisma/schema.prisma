@@ -27,3 +27,15 @@ model Role {
   name String @unique
   User User[]
 }
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Int
+  description String
+  quantity    Int
+  category    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  deleted     Boolean  @default(false)
+}
