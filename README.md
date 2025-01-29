@@ -1,6 +1,8 @@
 To run the server locally
 Install postgredb
 
+copy sample.env to .env
+
 Install dependency
 `npm install`
 
@@ -29,4 +31,4 @@ Initialize the prisma environment
 
 `npx prisma db seed`
 
-server should be acessible on localhost:4000
+server should be acessible on localhost:40001

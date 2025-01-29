@@ -131,9 +131,15 @@
  *                                  type: string
  *                                  example: Products
  *                              data:
- *                                  type: array
- *                                  items: 
- *                                      $ref: '#/components/schemas/Product'
+ *                                  type: object
+ *                                  properties:
+ *                                      total: 
+ *                                          type: number
+ *                                          example: 100
+ *                                      products:
+ *                                          type: array
+ *                                          items:
+ *                                              $ref: '#/components/schemas/Product'
  *          '500':
  *              description: Something bad went wrong
  *              content: 
@@ -166,7 +172,7 @@
  *                      schema:
  *                          type: object
  *                          properties:
- *                              message:    
+ *                              message:      
  *                                  type: string
  *                                  example: Product detail
  *                              data:

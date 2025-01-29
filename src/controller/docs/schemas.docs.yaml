@@ -35,6 +35,16 @@ components:
         message:
           type: string
           example: Internal server error
+    AuthorizeError:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 403
+        message: 
+          type: string
+          example: Unauthorized
+
     Product:
       type: object
       properties:
@@ -53,12 +63,3 @@ components:
         quantity:
           type: number
           example: 50
-    AuthorizeError:
-      type: object
-      properties:
-        status:
-          type: number
-          example: 403
-        message: 
-          type: string
-          example: Unauthorized
