@@ -7,6 +7,6 @@ import productRouter from "./product";
 const router = Router();
 
 router.use("/auth", authRouter);
-//router.use("/product",Middleware.isAuthenticated, productRouter);
+router.use("/product",Middleware.isAuthenticated, productRouter);
 
 export default router;
